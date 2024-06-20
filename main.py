@@ -67,7 +67,7 @@ async def identify_plant_with_images(organs: str = Form('auto'), image: UploadFi
         if search_response.status_code != 200:
             return [PlantIdentificationError(error=f"Error in Bing Image Search API: {search_response.status_code}")]
 
-        images = [img["contentUrl"] for img in search_response.json().get("value", [])[:5]]
+        images = [img["contentUrl"] for img in search_response.json().get("value", [])[:1]]
 
         # Add plant identification result to response list
         plants_response.append(PlantIdentificationResult(
