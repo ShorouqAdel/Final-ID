@@ -47,7 +47,7 @@ async def identify_plant_with_images(organs: str = Form('auto'), image: UploadFi
         probability = result["probability"]
 
         # Fetch description from Wikipedia
-        wiki_search_url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{common_name}"
+        wiki_search_url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{scientific_name}"
         wiki_response = requests.get(wiki_search_url)
         if wiki_response.status_code == 200:
             wiki_data = wiki_response.json()
@@ -57,8 +57,8 @@ async def identify_plant_with_images(organs: str = Form('auto'), image: UploadFi
             description = "Description not found"
             description_link = None
 
-        # Search for images of the plant using Bing Image Search API
-        search_url = f"https://api.bing.microsoft.com/v7.0/images/search?q={common_name}+plant"
+        # Search for images of the plant using Bing Image Search API with scientific name
+        search_url = f"https://api.bing.microsoft.com/v7.0/images/search?q={scientific_name}+plant"
         headers = {
             "Ocp-Apim-Subscription-Key": BING_IMAGE_SEARCH_API_KEY,
             "Accept": "application/json"
