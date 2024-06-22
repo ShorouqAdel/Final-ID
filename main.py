@@ -84,7 +84,7 @@ async def identify_plant_with_images(organs: str = Form('auto'), image: UploadFi
 
 @app.head("/ping")
 async def ping():
-    return {"ping": "pong"}
+    return "Hello, I am alive"
 
 if __name__ == "__main__":
     import uvicorn
